@@ -306,4 +306,4 @@ This project is licensed under the ISC License.
 
 ## 📞 Support
 
-For support, email 231fa04464@@gmail.com or create an issue in the repository.
+For support, email 231fa04464@gmail.com or create an issue in the repository.
