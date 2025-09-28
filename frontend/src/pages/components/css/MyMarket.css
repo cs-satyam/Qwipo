@@ -1,0 +1,66 @@
+/* MyMarket custom styles to evoke a marketplace look */
+
+.mymarket-hero {
+  background: linear-gradient(180deg, #ffedd5 0%, #fecaca 100%);
+}
+
+.mymarket-hero .hero-banner {
+  background: linear-gradient(90deg, #ffb703 0%, #fb7185 100%);
+  color: #111827;
+  position: relative;
+  overflow: hidden;
+}
+
+.mymarket-hero .hero-gradient {
+  height: 6px;
+  width: 100%;
+  background: linear-gradient(90deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #a855f7);
+}
+
+.mymarket-hero .box-illus {
+  width: 220px;
+  height: 140px;
+  border-radius: 1rem;
+  background: url('https://images.unsplash.com/photo-1518449007433-56bcf1e84d1a?q=80&w=800&auto=format&fit=crop') center/cover no-repeat;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.category-card .cat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  color: #374151;
+  box-shadow: 0 8px 20px rgba(0,0,0,.05);
+  font-size: 1.1rem;
+}
+
+.deal-item .card-img-top {
+  border-top-left-radius: .75rem;
+  border-top-right-radius: .75rem;
+}
+
+.deal-item .deal-title {
+  color: #111827;
+}
+
+.deal-item .badge {
+  font-weight: 600;
+}
+
+/* Sidebar refinements to feel marketplace */
+.dashboard-sidebar .sidebar-link {
+  border-radius: .5rem;
+  padding: .5rem .75rem;
+  color: #374151;
+}
+.dashboard-sidebar .sidebar-link:hover {
+  background: #f3f4f6;
+}
+
+/* Responsive tweaks */
+@media (max-width: 991.98px) {
+  .mymarket-hero .box-illus { display: none; }
+}

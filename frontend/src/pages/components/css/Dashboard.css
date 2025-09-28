@@ -1,0 +1,150 @@
+/* Import a modern font (optional, but nice) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Main Layout */
+:root {
+  --body-bg: #f8f9fa; /* Light grey background */
+  --card-bg: #ffffff; /* White cards */
+  --border-color: #dee2e6; /* Subtle border color */
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --primary-color: #0d6efd;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--text-primary);
+  background-color: var(--body-bg);
+}
+
+.dashboard-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+.dashboard-main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-content {
+  flex-grow: 1;
+}
+
+/* Common Card Style */
+.card {
+  border: 1px solid var(--border-color);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+  border-radius: 0.75rem; /* Softer corners */
+  background-color: var(--card-bg);
+}
+
+.card-header, .card-footer {
+  background-color: transparent;
+  border-color: var(--border-color);
+  padding: 1.25rem;
+}
+
+/* Stat Card specific styles */
+.stat-card .icon-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+/* Table styles */
+.table {
+  --bs-table-hover-bg: #f8f9fa;
+}
+
+.table th {
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+/* Button styles */
+.btn {
+  border-radius: 0.5rem;
+  font-weight: 600;
+}
+
+.btn-primary {
+  box-shadow: 0 4px 6px rgba(13, 110, 253, 0.15);
+}
+
+/* Dropdown action menu */
+.dropdown-menu {
+  border: 1px solid var(--border-color);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+}
+
+.dropdown-item {
+  padding: 0.5rem 1rem;
+}
+
+/* --- Add these styles to your Dashboard.css file --- */
+
+/* Top Navigation Bar */
+.topnav {
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.75rem 1.5rem;
+  height: 70px; /* Fixed height for topnav */
+}
+
+/* Modern Search Bar */
+.topnav .input-group {
+  max-width: 400px;
+}
+.topnav .form-control, .topnav .input-group-text {
+  background-color: var(--body-bg);
+  border-color: var(--border-color);
+  border-radius: 0.5rem !important;
+}
+.topnav .form-control:focus {
+  background-color: var(--card-bg);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
+}
+.topnav .input-group-text {
+  border-right: 0;
+  color: var(--text-secondary);
+}
+.topnav .form-control {
+  border-left: 0;
+}
+
+/* Icon Buttons for Nav */
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--text-secondary);
+  background-color: transparent;
+  transition: background-color 0.2s ease-in-out;
+}
+.icon-btn:hover {
+  background-color: var(--body-bg);
+  color: var(--text-primary);
+}
+
+/* Profile Dropdown Toggle */
+.topnav .dropdown-toggle::after {
+  display: none; /* Hide default dropdown arrow */
+}

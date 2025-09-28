@@ -1,0 +1,26 @@
+/* Footer Section */
+.footer-section {
+  background: linear-gradient(180deg, #0d0f14 0%, #0b0d12 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer-link {
+  color: rgba(255, 255, 255, 0.7) !important;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #ffc107 !important;
+  transform: translateX(3px);
+}
+
+.social-row .social-link {
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.social-row .social-link:hover {
+  color: #ffc107;
+  transform: translateY(-2px);
+}
