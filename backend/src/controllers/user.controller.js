@@ -116,3 +116,19 @@ module.exports = {
   getAllUsers,
   deleteUserAccount,
 };
+
+// Upgrade current user to retailer role
+async function upgradeToRetailer(req, res) {
+  try {
+    const user = await User.findById(req.user.userId);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    if (user.role === 'retailer') return res.json({ message: 'Already a retailer', user });
+    user.role = 'retailer';
+    await user.save();
+    res.json({ message: 'Upgraded to retailer', user: { _id: user._id, name: user.name, email: user.email, role: user.role } });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+}
+
+module.exports.upgradeToRetailer = upgradeToRetailer;

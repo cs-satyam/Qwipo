@@ -43,25 +43,17 @@ const Header = ({ onOpenAuth }) => {
             <Nav.Link href="#testimonials" className="nav-link-custom mx-2">
               <i className="bi bi-chat-quote-fill me-1"></i>Testimonials
             </Nav.Link>
-            {onOpenAuth ? (
-              <button
-                type="button"
-                onClick={() => onOpenAuth('login')}
-                className="btn btn-warning login-btn text-dark fw-bold ms-lg-3 my-2 my-lg-0 px-4"
-              >
-                <i className="bi bi-person-fill me-2"></i>
-                Get Started
-              </button>
-            ) : (
-              <Nav.Link 
-                as={Link}
-                to="/login"
-                className="btn btn-warning login-btn text-dark fw-bold ms-lg-3 my-2 my-lg-0 px-4"
-              >
-                <i className="bi bi-person-fill me-2"></i>
-                Get Started
-              </Nav.Link>
-            )}
+
+            <Nav.Link
+              as={Link}
+              to="/login"
+              className="btn btn-warning login-btn text-dark fw-bold ms-lg-3 my-2 my-lg-0 px-4"
+            >
+              <i className="bi bi-person-fill me-2"></i> Get Started
+            </Nav.Link>
+
+
+            
           </Nav>
         </Navbar.Collapse>
       </Container>

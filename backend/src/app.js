@@ -10,7 +10,9 @@ const authRoutes = require('./routes/auth.routes');
 const userRoutes = require('./routes/user.routes');
 const productRoutes = require('./routes/product.routes');
 const orderRoutes = require('./routes/order.routes');
+const cartRoutes = require('./routes/cart.routes');
 const recommendationRoutes = require('./routes/recommendation.routes');
+const couponRoutes = require('./routes/coupon.routes');
 
 
 // Initialize app
@@ -19,17 +21,17 @@ const app = express();
 // Middleware
 
 app.use(cors({
-  origin: "http://localhost:5173", // your frontend URL
+  origin: "http://localhost:5173",
   credentials: true
 }));
-app.use(express.json()); // Parse JSON body
+app.use(express.json()); 
 app.use(morgan("dev"));
-app.use(helmet()); // Security headers
+app.use(helmet());
 
 // Rate limiting (basic)
 const apiLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
+  windowMs: 15 * 60 * 1000, 
+  max: 100, 
   standardHeaders: true,
   legacyHeaders: false,
 });
@@ -40,6 +42,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/cart', cartRoutes);
+app.use('/api/coupons', couponRoutes);
 app.use('/api/recommendations', recommendationRoutes);
 
 // Base route

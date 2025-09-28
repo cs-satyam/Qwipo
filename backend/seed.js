@@ -7,8 +7,8 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
   .then(async () => {
     console.log('MongoDB connected');
     
-    await Product.deleteMany(); // optional: remove existing products
-    await Product.insertMany(products); // insert products from JSON
+    await Product.deleteMany(); 
+    await Product.insertMany(products); 
     
     console.log('Products added successfully');
     process.exit();

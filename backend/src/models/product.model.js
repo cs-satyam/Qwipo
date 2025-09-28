@@ -25,6 +25,14 @@ const productSchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
+    image: {
+      type: String,
+      trim: true,
+    },
+    thumbnail: {
+      type: String,
+      trim: true,
+    },
     distributor: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

@@ -3,7 +3,7 @@ const Product = require('../models/product.model');
 // Create a new product
 async function createProduct(req, res) {
   try {
-    const { name, description, category, price, stock, tags } = req.body;
+    const { name, description, category, price, stock, tags, image, thumbnail } = req.body;
 
     // distributor from logged-in user
     const distributor = req.user.userId;
@@ -14,6 +14,8 @@ async function createProduct(req, res) {
       category,
       price,
       stock,
+      image,
+      thumbnail,
       distributor,
       tags,
     });
@@ -127,6 +129,12 @@ async function getProductById(req, res) {
 // Update product
 async function updateProduct(req, res) {
   try {
+    const existing = await Product.findById(req.params.id);
+    if (!existing) return res.status(404).json({ message: 'Product not found' });
+    // Ownership check: only the distributor (retailer) can edit
+    if (existing.distributor && existing.distributor.toString() !== req.user.userId) {
+      return res.status(403).json({ message: 'You do not have permission to update this product' });
+    }
     const product = await Product.findByIdAndUpdate(
       req.params.id,
       { ...req.body },
@@ -142,9 +150,24 @@ async function updateProduct(req, res) {
 // Delete product
 async function deleteProduct(req, res) {
   try {
-    const product = await Product.findByIdAndDelete(req.params.id);
-    if (!product) return res.status(404).json({ message: 'Product not found' });
+    const existing = await Product.findById(req.params.id);
+    if (!existing) return res.status(404).json({ message: 'Product not found' });
+    // Ownership check
+    if (existing.distributor && existing.distributor.toString() !== req.user.userId) {
+      return res.status(403).json({ message: 'You do not have permission to delete this product' });
+    }
+    await existing.deleteOne();
     res.json({ message: 'Product deleted' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+}
+
+// Get products created by the logged-in retailer
+async function getMyProducts(req, res) {
+  try {
+    const products = await Product.find({ distributor: req.user.userId }).sort({ createdAt: -1 });
+    res.json({ products });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -156,4 +179,5 @@ module.exports = {
   getProductById,
   updateProduct,
   deleteProduct,
+  getMyProducts,
 };

@@ -80,7 +80,7 @@ function Hero({ onOpenAuth }) {
               Discover Your Next <span className="text-warning">Best-Seller</span>. Instantly.
             </h1>
             <p className="hero-subtitle mt-4 mb-5" data-aos="fade-up" data-aos-delay="300">
-              Qwipo's intelligent recommendation engine helps you find the right products, 
+              Qwipo's intelligent recommendation engine helps you find the right products,
               optimize your inventory, and <strong>boost your profits by up to 40%</strong>.
             </p>
             <div className="hero-buttons" data-aos="zoom-in" data-aos-delay="600">
@@ -104,19 +104,19 @@ function Hero({ onOpenAuth }) {
               <div className="row text-center">
                 <div className="col-md-4">
                   <div className="stat-item">
-                    <h3 className="stat-number text-warning">{statsInView ? `${users}+` : '0'}</h3>
+                    <h3 className="stat-number text-warning">{statsInView ? `${users}+ `: '0'}</h3>
                     <p className="stat-label">Active Users</p>
                   </div>
                 </div>
                 <div className="col-md-4">
                   <div className="stat-item">
-                    <h3 className="stat-number text-warning">{statsInView ? `${profit}%` : '0%'}</h3>
+                    <h3 className="stat-number text-warning">{statsInView ?` ${profit}% `: '0%'}</h3>
                     <p className="stat-label">Profit Increase</p>
                   </div>
                 </div>
                 <div className="col-md-4">
                   <div className="stat-item">
-                    <h3 className="stat-number text-warning">{statsInView ? `${accuracy}%` : '0%'}</h3>
+                    <h3 className="stat-number text-warning">{statsInView ? `${accuracy}% `: '0%'}</h3>
                     <p className="stat-label">Accuracy Rate</p>
                   </div>
                 </div>

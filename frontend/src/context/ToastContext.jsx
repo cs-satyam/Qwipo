@@ -18,7 +18,6 @@ export function ToastProvider({ children }) {
   return (
     <ToastContext.Provider value={value}>
       {children}
-      {/* Simple toast container using Bootstrap alert styles */}
       <div className="position-fixed bottom-0 end-0 p-3" style={{ zIndex: 1080 }}>
         <div className="d-flex flex-column gap-2">
           {toasts.map(t => (

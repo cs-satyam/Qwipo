@@ -5,6 +5,7 @@ const {
   changePassword,
   getAllUsers,
   deleteUserAccount,
+  upgradeToRetailer,
 } = require('../controllers/user.controller');
 const authenticateToken = require('../middleware/auth.middleware');
 
@@ -18,5 +19,8 @@ router.delete('/account', authenticateToken, deleteUserAccount);
 
 // Admin routes (you may want to add admin middleware later)
 router.get('/all', authenticateToken, getAllUsers);
+
+// Upgrade to retailer
+router.post('/upgrade-retailer', authenticateToken, upgradeToRetailer);
 
 module.exports = router;

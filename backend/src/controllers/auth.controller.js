@@ -1,12 +1,12 @@
 const authService = require('../services/auth.service');
 
-// In-memory token blacklist
+
 let tokenBlacklist = [];
 
 async function register(req, res) {
-  const { name, email, password } = req.body;
+  const { name, email, password, role } = req.body;
   try {
-    const { token, user } = await authService.registerUser(name, email, password);
+    const { token, user } = await authService.registerUser(name, email, password, role);
     res.status(201).json({ token, user });
   } catch (err) {
     res.status(400).json({ message: err.message });

@@ -6,14 +6,15 @@ Base URL: `http://localhost:5000`
 
 Import these into Thunder Client or run with curl. For all protected routes, set header: `Authorization: Bearer YOUR_JWT_TOKEN`.
 
-- **Register**
+- **Register (supports role)**
   - Method/URL: POST `http://localhost:5000/api/auth/register`
   - Body (JSON):
     ```json
     {
       "name": "John Doe",
       "email": "john@example.com",
-      "password": "password123"
+      "password": "password123",
+      "role": "buyer" // or "retailer"
     }
     ```
 
@@ -27,12 +28,13 @@ Import these into Thunder Client or run with curl. For all protected routes, set
     }
     ```
   - Copy `token` from response and use as `Authorization: Bearer <token>`
+  - The response includes `user` with a `role` field (`buyer` or `retailer`).
 
 - **Get Profile**
-  - GET `http://localhost:5000/api/user/profile`
+  - GET `http://localhost:5000/api/users/profile`
 
 - **Update Profile**
-  - PUT `http://localhost:5000/api/user/profile`
+  - PUT `http://localhost:5000/api/users/profile`
   - Body (JSON):
     ```json
     {
@@ -43,10 +45,10 @@ Import these into Thunder Client or run with curl. For all protected routes, set
     }
     ```
 
-- **List Products (search/filter/paginate)**
+- **List Products (search/filter/paginate, PUBLIC)**
   - GET `http://localhost:5000/api/products?search=rice&category=Grocery&minPrice=50&maxPrice=600&page=1&limit=10&sortBy=price&sortOrder=asc`
 
-- **Create Product**
+- **Create Product (retailer-only)**
   - POST `http://localhost:5000/api/products`
   - Body (JSON):
     ```json
@@ -60,7 +62,7 @@ Import these into Thunder Client or run with curl. For all protected routes, set
     }
     ```
 
-- **Create Order**
+- **Create Order (authenticated buyer/retailer)**
   - POST `http://localhost:5000/api/orders`
   - Body (JSON):
     ```json
@@ -138,20 +140,23 @@ A comprehensive Node.js/Express backend API for an e-commerce platform with user
 ### Authentication Routes (`/api/auth`)
 - `POST /register` - Register a new user
 - `POST /login` - Login user
+  - Response includes `{ token, user }` where `user.role` is `buyer` or `retailer` and the JWT embeds the role.
 
-### User Routes (`/api/user`)
+### User Routes (`/api/users`)
 - `GET /profile` - Get user profile
 - `PUT /profile` - Update user profile
 - `PUT /change-password` - Change password
 - `DELETE /account` - Delete user account
 - `GET /all` - Get all users (admin)
+- `POST /upgrade-retailer` - Upgrade current user to `retailer`
 
 ### Product Routes (`/api/products`)
-- `GET /` - Get all products (with search, filter, pagination)
-- `GET /:id` - Get single product
-- `POST /` - Create new product (authenticated)
-- `PUT /:id` - Update product (authenticated)
-- `DELETE /:id` - Delete product (authenticated)
+- `GET /` - Get all products (with search, filter, pagination) [PUBLIC]
+- `GET /:id` - Get single product [PUBLIC]
+- `GET /mine/list` - Get products created by the logged-in retailer [retailer-only]
+- `POST /` - Create new product [retailer-only]
+- `PUT /:id` - Update product (ownership enforced) [retailer-only]
+- `DELETE /:id` - Delete product (ownership enforced) [retailer-only]
 
 #### Product Query Parameters
 - `search` - Search in name, description, tags
@@ -165,10 +170,11 @@ A comprehensive Node.js/Express backend API for an e-commerce platform with user
 - `sortOrder` - Sort order: asc/desc (default: desc)
 
 ### Order Routes (`/api/orders`)
-- `GET /` - Get user orders
-- `GET /:id` - Get single order
-- `POST /` - Create new order
+- `GET /` - Get orders for the logged-in user
+- `GET /:id` - Get single order (must belong to the user)
+- `POST /` - Create new order (stock checked, optional coupon)
 - `PUT /:id` - Update order status
+- `GET /retailer/sales` - Get orders containing products listed by the logged-in retailer [retailer-only]
 
 ### Recommendation Routes (`/api/recommendations`)
 - `GET /` - Get user recommendations
@@ -199,10 +205,9 @@ curl -X POST http://localhost:5000/api/auth/login \
   }'
 ```
 
-### Search products
+### Search products (PUBLIC)
 ```bash
-curl "http://localhost:5000/api/products?search=rice&category=Grocery&minPrice=100&maxPrice=300" \
-  -H "Authorization: Bearer YOUR_JWT_TOKEN"
+curl "http://localhost:5000/api/products?search=rice&category=Seeds&minPrice=100&maxPrice=300"
 ```
 
 ### Generate recommendations
@@ -268,7 +273,7 @@ The recommendation system uses multiple algorithms:
 ## 🔒 Security Features
 
 - Password hashing with bcryptjs
-- JWT token authentication
+- JWT token authentication (JWT includes `userId`, `email`, `role`)
 - Protected routes with middleware
 - Input validation
 - CORS enabled
@@ -281,8 +286,10 @@ The recommendation system uses multiple algorithms:
 3. **Security**: Use strong JWT secrets and enable HTTPS
 4. **Monitoring**: Add logging and monitoring solutions
 
-## 📝 TODO
+## 📝 Notes & TODO
 
+- Role-based access: product mutations and retailer sales endpoints require `role=retailer`.
+- Public product browsing is open (no auth).
 - [ ] Add input validation middleware
 - [ ] Implement rate limiting
 - [ ] Add API documentation with Swagger
