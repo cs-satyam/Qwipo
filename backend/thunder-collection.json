@@ -1,0 +1,267 @@
+{
+  "client": "Thunder Client",
+  "collectionName": "BytXl E-commerce API",
+  "dateExported": "2025-09-27 11:33:00",
+  "version": "1.1",
+  "variables": [
+    { "name": "baseUrl", "value": "http://localhost:5000" },
+    { "name": "token", "value": "" },
+    { "name": "productId", "value": "" },
+    { "name": "orderId", "value": "" },
+    { "name": "userId", "value": "" }
+  ],
+  "folders": [
+    { "name": "Auth" },
+    { "name": "User" },
+    { "name": "Products" },
+    { "name": "Orders" },
+    { "name": "Recommendations" }
+  ],
+  "requests": [
+    {
+      "name": "Auth - Register",
+      "url": "{{baseUrl}}/api/auth/register",
+      "method": "POST",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
+      },
+      "folderName": "Auth"
+    },
+    {
+      "name": "Auth - Login",
+      "url": "{{baseUrl}}/api/auth/login",
+      "method": "POST",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
+      },
+      "folderName": "Auth"
+    },
+    {
+      "name": "Auth - Logout",
+      "url": "{{baseUrl}}/api/auth/logout",
+      "method": "POST",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "folderName": "Auth"
+    },
+
+    {
+      "name": "User - Get Profile",
+      "url": "{{baseUrl}}/api/user/profile",
+      "method": "GET",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "folderName": "User"
+    },
+    {
+      "name": "User - Update Profile",
+      "url": "{{baseUrl}}/api/user/profile",
+      "method": "PUT",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"name\": \"John Updated\",\n  \"email\": \"john.updated@example.com\",\n  \"phone\": \"+91-9876543210\",\n  \"address\": \"Bangalore, India\"\n}"
+      },
+      "folderName": "User"
+    },
+    {
+      "name": "User - Change Password",
+      "url": "{{baseUrl}}/api/user/change-password",
+      "method": "PUT",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"currentPassword\": \"password123\",\n  \"newPassword\": \"newPass456\"\n}"
+      },
+      "folderName": "User"
+    },
+    {
+      "name": "User - Delete Account",
+      "url": "{{baseUrl}}/api/user/account",
+      "method": "DELETE",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "folderName": "User"
+    },
+    {
+      "name": "User - Get All Users",
+      "url": "{{baseUrl}}/api/user/all",
+      "method": "GET",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "folderName": "User"
+    },
+
+    {
+      "name": "Products - List (search/filter/paginate)",
+      "url": "{{baseUrl}}/api/products?search=rice&category=Grocery&minPrice=50&maxPrice=600&page=1&limit=10&sortBy=price&sortOrder=asc",
+      "method": "GET",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "folderName": "Products"
+    },
+    {
+      "name": "Products - Create",
+      "url": "{{baseUrl}}/api/products",
+      "method": "POST",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"name\": \"Basmati Rice 10kg\",\n  \"description\": \"Premium long-grain basmati\",\n  \"category\": \"Grocery\",\n  \"price\": 520,\n  \"stock\": 25,\n  \"tags\": [\"rice\", \"basmati\", \"grocery\"]\n}"
+      },
+      "folderName": "Products"
+    },
+    {
+      "name": "Products - Get By Id",
+      "url": "{{baseUrl}}/api/products/{{productId}}",
+      "method": "GET",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "folderName": "Products"
+    },
+    {
+      "name": "Products - Update",
+      "url": "{{baseUrl}}/api/products/{{productId}}",
+      "method": "PUT",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"price\": 499,\n  \"stock\": 30\n}"
+      },
+      "folderName": "Products"
+    },
+    {
+      "name": "Products - Delete",
+      "url": "{{baseUrl}}/api/products/{{productId}}",
+      "method": "DELETE",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "folderName": "Products"
+    },
+
+    {
+      "name": "Orders - Create",
+      "url": "{{baseUrl}}/api/orders",
+      "method": "POST",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"products\": [\n    { \"product\": \"{{productId}}\", \"quantity\": 2 }\n  ]\n}"
+      },
+      "folderName": "Orders"
+    },
+    {
+      "name": "Orders - List My Orders",
+      "url": "{{baseUrl}}/api/orders",
+      "method": "GET",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "folderName": "Orders"
+    },
+    {
+      "name": "Orders - Get By Id",
+      "url": "{{baseUrl}}/api/orders/{{orderId}}",
+      "method": "GET",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "folderName": "Orders"
+    },
+    {
+      "name": "Orders - Update Status",
+      "url": "{{baseUrl}}/api/orders/{{orderId}}",
+      "method": "PUT",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"status\": \"Processing\"\n}"
+      },
+      "folderName": "Orders"
+    },
+    {
+      "name": "Orders - Delete/Cancel",
+      "url": "{{baseUrl}}/api/orders/{{orderId}}",
+      "method": "DELETE",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "folderName": "Orders"
+    },
+
+    {
+      "name": "Recs - Generate",
+      "url": "{{baseUrl}}/api/recommendations/generate",
+      "method": "POST",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "folderName": "Recommendations"
+    },
+    {
+      "name": "Recs - Get",
+      "url": "{{baseUrl}}/api/recommendations",
+      "method": "GET",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "folderName": "Recommendations"
+    },
+    {
+      "name": "Recs - Create Manual",
+      "url": "{{baseUrl}}/api/recommendations",
+      "method": "POST",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"userId\": \"{{userId}}\",\n  \"productId\": \"{{productId}}\",\n  \"score\": 0.85,\n  \"reason\": \"similar_category\",\n  \"metadata\": { \"category_match\": true }\n}"
+      },
+      "folderName": "Recommendations"
+    },
+    {
+      "name": "Recs - Delete",
+      "url": "{{baseUrl}}/api/recommendations/{{recoId}}",
+      "method": "DELETE",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{token}}" }
+      ],
+      "folderName": "Recommendations"
+    }
+  ]
+}

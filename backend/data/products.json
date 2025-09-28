@@ -1,0 +1,93 @@
+[
+    {
+        "name": "Basmati Rice 5kg",
+        "description": "Premium long-grain basmati rice, perfect for restaurants and kirana stores.",
+        "category": "Grocery",
+        "price": 250,
+        "stock": 100,
+        "tags": [
+            "rice",
+            "basmati",
+            "grocery"
+        ],
+        "distributor": "68d760a93aa1e379609cc765"
+    },
+    {
+        "name": "Sugar 1kg",
+        "description": "Refined sugar suitable for general use and cooking.",
+        "category": "Grocery",
+        "price": 50,
+        "stock": 200,
+        "tags": [
+            "sugar",
+            "grocery",
+            "sweetener"
+        ],
+        "distributor": "68d760a93aa1e379609cc765"
+    },
+    {
+        "name": "Cooking Oil 1L",
+        "description": "Premium quality vegetable oil for cooking and frying.",
+        "category": "Grocery",
+        "price": 150,
+        "stock": 150,
+        "tags": [
+            "oil",
+            "cooking",
+            "grocery"
+        ],
+        "distributor": "68d760a93aa1e379609cc765"
+    },
+    {
+        "name": "Paneer 500g",
+        "description": "Fresh Indian cottage cheese, perfect for restaurants.",
+        "category": "Dairy",
+        "price": 120,
+        "stock": 50,
+        "tags": [
+            "paneer",
+            "dairy",
+            "cheese"
+        ],
+        "distributor": "68d760a93aa1e379609cc765"
+    },
+    {
+        "name": "Tomato Ketchup 500ml",
+        "description": "Sweet and tangy ketchup, ideal for snacks and fast food.",
+        "category": "Condiments",
+        "price": 80,
+        "stock": 100,
+        "tags": [
+            "ketchup",
+            "condiment",
+            "snacks"
+        ],
+        "distributor": "68d760a93aa1e379609cc765"
+    },
+    {
+        "name": "All-Purpose Flour 5kg",
+        "description": "High-quality wheat flour for baking and cooking.",
+        "category": "Grocery",
+        "price": 200,
+        "stock": 80,
+        "tags": [
+            "flour",
+            "wheat",
+            "grocery"
+        ],
+        "distributor": "68d760a93aa1e379609cc765"
+    },
+    {
+        "name": "Tea Leaves 250g",
+        "description": "Premium black tea leaves for restaurants and cafes.",
+        "category": "Beverages",
+        "price": 120,
+        "stock": 120,
+        "tags": [
+            "tea",
+            "beverage",
+            "black tea"
+        ],
+        "distributor": "68d760a93aa1e379609cc765"
+    }
+]
