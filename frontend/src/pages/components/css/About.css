@@ -1,0 +1,100 @@
+/* About Section */
+.about-section {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ffffff 0%, #eef2f7 100%);
+}
+
+.about-title {
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: #2c3e50;
+  line-height: 1.2;
+}
+
+.about-text {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.8;
+  color: #5a646e;
+}
+
+.about-section img {
+  border-radius: 1rem;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.about-section img:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 35px 65px rgba(0, 0, 0, 0.2);
+}
+
+/* Checklist */
+.about-list li span { color: #455a64; }
+
+/* KPI Cards */
+.kpi-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+  text-align: left;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+}
+
+.kpi-number {
+  font-weight: 800;
+  font-size: 2rem;
+  margin: 0;
+}
+
+.kpi-label {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Image wrapper with blob + ring */
+.about-image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.about-image {
+  position: relative;
+  border-radius: 16px;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.about-image-wrapper:hover .about-image {
+  transform: translateY(-6px);
+  box-shadow: 0 35px 65px rgba(0, 0, 0, 0.2);
+}
+
+.about-image-blob {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle at 30% 30%, rgba(102, 126, 234, 0.35), transparent 60%),
+              radial-gradient(circle at 70% 70%, rgba(118, 75, 162, 0.35), transparent 60%);
+  filter: blur(20px);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.about-image-ring {
+  position: absolute;
+  right: -18px;
+  bottom: -18px;
+  width: 120px;
+  height: 120px;
+  border: 2px dashed rgba(102, 126, 234, 0.5);
+  border-radius: 50%;
+  z-index: 0;
+}

@@ -1,0 +1,221 @@
+/* Auth pages styling to match Hero theme */
+
+.auth-wrapper {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.auth-card {
+  /* Darker translucent surface to keep contrast over light/white backgrounds */
+  background: rgba(16, 18, 27, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 20px;
+  color: #fff;
+  position: relative;
+  z-index: 2; /* Above decorative overlays */
+  pointer-events: auto; /* accept interactions */
+}
+
+.auth-title {
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.25);
+}
+
+.auth-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.auth-form .form-label {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.auth-form .form-control {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+.auth-form .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.auth-form .form-control:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+  color: #fff;
+}
+
+.auth-footer-link {
+  color: #ffd75e;
+  text-decoration: none;
+}
+
+.auth-footer-link:hover {
+  color: #ffdf80;
+}
+
+/* Button styling aligned with hero */
+.btn-hero-primary {
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 0.9rem 2rem;
+  border-radius: 50px;
+  background: #ffc107;
+  border: none;
+  color: #212529;
+  transition: all 0.3s ease;
+}
+
+.btn-hero-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(255, 193, 7, 0.35);
+}
+
+/* Small badge like hero */
+.auth-badge span {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #fff !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* Make modal background fully transparent so landing page shows through */
+.auth-modal-dialog {
+  z-index: 1060; /* ensure above any site elements */
+}
+
+.auth-modal-dialog .modal-content {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  pointer-events: auto; /* allow clicks inside modal */
+}
+
+/* Remove dark backdrop dimming */
+.modal-backdrop.show {
+  opacity: 0 !important;
+}
+
+/* Wrapper for positioning animated shapes inside modal */
+.auth-modal-wrapper {
+  position: relative;
+}
+
+/* Animated decorative shapes layered over the hero for auth pages */
+.auth-animated-shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* do not block clicks */
+  z-index: 1;
+}
+
+.auth-animated-shapes::before,
+.auth-animated-shapes::after {
+  content: '';
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  filter: blur(45px);
+  opacity: 0.35;
+  animation: drift 18s ease-in-out infinite;
+}
+
+.auth-animated-shapes::before {
+  top: -80px;
+  left: -60px;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 193, 7, 0.6), transparent 60%);
+}
+
+.auth-animated-shapes::after {
+  bottom: -100px;
+  right: -60px;
+  background: radial-gradient(circle at 70% 70%, rgba(120, 219, 255, 0.5), transparent 60%);
+  animation-delay: 4s;
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -15px) scale(1.05); }
+}
+
+/* Subtle inner glow behind the auth card */
+.auth-glow {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  pointer-events: none; /* do not block clicks */
+}
+
+.auth-glow::before {
+  content: '';
+  width: 70%;
+  max-width: 780px;
+  height: 70%;
+  max-height: 520px;
+  border-radius: 30px;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.15), transparent 60%);
+  filter: blur(30px);
+}
+
+/* Input groups with icons */
+.auth-input-group .input-group-text {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.95);
+  border-right: 0;
+}
+
+.auth-input-group .form-control {
+  border-left: 0;
+}
+
+/* Divider styling */
+.auth-divider {
+  position: relative;
+  text-align: center;
+  margin: 1.25rem 0 0.75rem;
+}
+
+.auth-divider span {
+  display: inline-block;
+  padding: 0 12px;
+  color: rgba(255,255,255,0.8);
+  background: rgba(0,0,0,0.1);
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 35%;
+  height: 1px;
+  background: rgba(255,255,255,0.25);
+}
+
+.auth-divider::before { left: 0; }
+.auth-divider::after { right: 0; }
+
+/* Social buttons */
+.auth-social .btn {
+  border-radius: 10px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+}
+
+.auth-social .btn:hover {
+  background: rgba(255,255,255,0.15);
+}
