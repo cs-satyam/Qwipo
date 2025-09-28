@@ -1,162 +1,309 @@
-# Qwipo Smart Recommendations — Predict-to-Stock & Smart Baskets
+# BytXl E-commerce Backend API
 
-> Intelligent product recommendation & inventory prediction platform for B2B retailers and distributors.  
-> Provides personalized recommendations, one-click smart baskets, and predictive restock alerts to increase AOV and repeat purchases.
+## Test
 
----
+Base URL: `http://localhost:5000`
 
-## 🚀 Project Overview
-This repository contains a prototype for a recommendation system built for a B2B marketplace (retailers & distributors).  
-Key features:
-- Personalized product recommendations (per retailer)
-- **Smart Baskets** (pre-built AI-curated combos)
-- **Predict-to-Stock**: predictive restock alerts and demand forecasts
-- Separate dashboards:
-  - Retailer Dashboard: recommendations, restock alerts, quick reorder, insights
-  - Distributor Dashboard: inventory, retailer demand insights, promotions, analytics
+Import these into Thunder Client or run with curl. For all protected routes, set header: `Authorization: Bearer YOUR_JWT_TOKEN`.
 
-Primary goals:
-- Increase Average Order Value (AOV) by 15–20%
-- Improve repeat-purchase behavior by ~25%
-- Provide actionable inventory and local-demand alerts for retailers & distributors
+- **Register**
+  - Method/URL: POST `http://localhost:5000/api/auth/register`
+  - Body (JSON):
+    ```json
+    {
+      "name": "John Doe",
+      "email": "john@example.com",
+      "password": "password123"
+    }
+    ```
 
----
+- **Login**
+  - Method/URL: POST `http://localhost:5000/api/auth/login`
+  - Body (JSON):
+    ```json
+    {
+      "email": "john@example.com",
+      "password": "password123"
+    }
+    ```
+  - Copy `token` from response and use as `Authorization: Bearer <token>`
 
-## 🧭 Tech Stack (recommended)
-- **Backend**: Python (FastAPI) or Node.js (Express/Fastify) — FastAPI recommended
-- **Database**: PostgreSQL (transactions) / MongoDB (optional)
-- **Cache / Online features**: Redis
-- **Stream / Event**: Kafka or Redis Streams (prototype can use simple queue)
-- **ML**: scikit-learn, implicit (ALS), gensim / PyTorch for embeddings
-- **Serving**: REST APIs (FastAPI)
-- **Frontend**: React or EJS + minimal CSS (dashboard prototypes)
-- **Orchestration**: Docker / docker-compose (K8s for production)
-- **Storage**: S3 / local file for embeddings & batch files
+- **Get Profile**
+  - GET `http://localhost:5000/api/user/profile`
 
----
+- **Update Profile**
+  - PUT `http://localhost:5000/api/user/profile`
+  - Body (JSON):
+    ```json
+    {
+      "name": "John Updated",
+      "email": "john.updated@example.com",
+      "phone": "+91-9876543210",
+      "address": "Bangalore, India"
+    }
+    ```
 
-## Getting Started
+- **List Products (search/filter/paginate)**
+  - GET `http://localhost:5000/api/products?search=rice&category=Grocery&minPrice=50&maxPrice=600&page=1&limit=10&sortBy=price&sortOrder=asc`
 
-Follow these steps to run the frontend prototype on Windows.
+- **Create Product**
+  - POST `http://localhost:5000/api/products`
+  - Body (JSON):
+    ```json
+    {
+      "name": "Basmati Rice 10kg",
+      "description": "Premium long-grain basmati",
+      "category": "Grocery",
+      "price": 520,
+      "stock": 25,
+      "tags": ["rice", "basmati", "grocery"]
+    }
+    ```
 
-1. Open a terminal in the repository root:
-   - cd d:\hack\Qwipo\frontend
-2. Install dependencies:
-   - npm install
-3. Run the development server:
-   - npm run dev
-4. Build for production:
-   - npm run build
-5. Serve the built app locally (optional):
-   - npm run preview
+- **Create Order**
+  - POST `http://localhost:5000/api/orders`
+  - Body (JSON):
+    ```json
+    {
+      "products": [
+        { "product": "PUT_PRODUCT_ID", "quantity": 2 },
+        { "product": "PUT_ANOTHER_PRODUCT_ID", "quantity": 1 }
+      ]
+    }
+    ```
 
-Notes:
-- The frontend uses Vite + React and expects a backend API at an endpoint you configure via .env.* files.
-- Keep .env files out of source control (see .gitignore).
+- **Generate Recommendations**
+  - POST `http://localhost:5000/api/recommendations/generate`
 
-## Contributing
+- **Get Recommendations**
+  - GET `http://localhost:5000/api/recommendations`
 
-- Create a feature branch: git checkout -b feat/your-feature
-- Run tests / lint before opening a PR.
-- Add a short description and relevant screenshots to PRs.
+A comprehensive Node.js/Express backend API for an e-commerce platform with user authentication, product management, order processing, and intelligent recommendations.
 
-## Changelog
+## 🚀 Features
 
-- 2025-09-28: Added Getting Started, Contributing, and Changelog sections to README.
+- **User Authentication**: JWT-based authentication with registration and login
+- **Product Management**: CRUD operations with search, filtering, and pagination
+- **Order Management**: Complete order processing system
+- **Recommendation System**: AI-powered product recommendations based on user behavior
+- **User Profile Management**: Complete user profile CRUD operations
+- **Security**: Password hashing, JWT tokens, and middleware protection
 
-## License
+## 📋 Prerequisites
 
-Specify a project license (e.g., MIT) in LICENSE file if applicable.
+- Node.js (v14 or higher)
+- MongoDB (local or cloud)
+- npm or yarn
 
----
+## 🛠️ Installation
 
-# Qwipo project .gitignore
-# Tailored for the repo at d:\hack\Qwipo (frontend Vite/React + optional backend)
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd BytXl/project/backend
+   ```
 
-# Node / frontend
-node_modules/
-**/node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-# Vite / build outputs
-dist/
-.build/
-out/
-.vite/
-.cache/
+3. **Environment Setup**
+   Create a `.env` file in the root directory:
+   ```env
+   PORT=5000
+   MONGO_URI=mongodb://127.0.0.1:27017/qwipo
+   JWT_SECRET=your_super_secret_jwt_key_here
+   ```
 
-# Environment files (keep examples)
-.env
-.env.local
-.env.*.local
-!.env.example
+4. **Start MongoDB**
+   Make sure MongoDB is running on your system.
 
-# Logs
-logs/
-*.log
-*.log.*
-debug.log
+5. **Seed the database (optional)**
+   ```bash
+   node seed.js
+   ```
 
-# OS files
-.DS_Store
-Thumbs.db
-desktop.ini
+6. **Start the server**
+   ```bash
+   # Development mode
+   npm run dev
+   
+   # Production mode
+   npm start
+   ```
 
-# IDEs / Editors
-.vscode/
-.idea/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.swp
-*~.nib
+## 📚 API Endpoints
 
-# Python (optional backend)
-__pycache__/
-*.py[cod]
-*$py.class
-.venv/
-venv/
-ENV/
-env/
-env.bak/
-pip-wheel-metadata/
-*.egg-info/
-build/
-dist/
+### Authentication Routes (`/api/auth`)
+- `POST /register` - Register a new user
+- `POST /login` - Login user
 
-# Docker
-docker-compose.override.yml
-docker-compose.*.yml
+### User Routes (`/api/user`)
+- `GET /profile` - Get user profile
+- `PUT /profile` - Update user profile
+- `PUT /change-password` - Change password
+- `DELETE /account` - Delete user account
+- `GET /all` - Get all users (admin)
 
-# Testing / coverage
-coverage/
-coverage/*.lcov
-.jest/
-pytest_cache/
+### Product Routes (`/api/products`)
+- `GET /` - Get all products (with search, filter, pagination)
+- `GET /:id` - Get single product
+- `POST /` - Create new product (authenticated)
+- `PUT /:id` - Update product (authenticated)
+- `DELETE /:id` - Delete product (authenticated)
 
-# Temporary files
-tmp/
-temp/
-*.tmp
-*.bak
+#### Product Query Parameters
+- `search` - Search in name, description, tags
+- `category` - Filter by category
+- `minPrice` - Minimum price filter
+- `maxPrice` - Maximum price filter
+- `tags` - Filter by tags (comma-separated)
+- `page` - Page number (default: 1)
+- `limit` - Items per page (default: 10)
+- `sortBy` - Sort field (default: createdAt)
+- `sortOrder` - Sort order: asc/desc (default: desc)
 
-# Lock / package manager (keep lockfiles if you want reproducible installs)
-# Uncomment to ignore all lockfiles:
-# package-lock.json
-# yarn.lock
-# pnpm-lock.yaml
+### Order Routes (`/api/orders`)
+- `GET /` - Get user orders
+- `GET /:id` - Get single order
+- `POST /` - Create new order
+- `PUT /:id` - Update order status
 
-# Misc
-*.sqlite3
-*.db
-*.pid
-*.seed
-*.pid.lock
-*.gz
-*.zip
-*.tar
+### Recommendation Routes (`/api/recommendations`)
+- `GET /` - Get user recommendations
+- `POST /generate` - Generate new recommendations
+- `POST /` - Create manual recommendation (admin)
+- `DELETE /:id` - Delete recommendation
+
+## 🔧 Usage Examples
+
+### Register a new user
+```bash
+curl -X POST http://localhost:5000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "John Doe",
+    "email": "john@example.com",
+    "password": "password123"
+  }'
+```
+
+### Login
+```bash
+curl -X POST http://localhost:5000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "john@example.com",
+    "password": "password123"
+  }'
+```
+
+### Search products
+```bash
+curl "http://localhost:5000/api/products?search=rice&category=Grocery&minPrice=100&maxPrice=300" \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN"
+```
+
+### Generate recommendations
+```bash
+curl -X POST http://localhost:5000/api/recommendations/generate \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN"
+```
+
+## 🏗️ Project Structure
+
+```
+backend/
+├── src/
+│   ├── controllers/         # Request handlers
+│   │   ├── auth.controller.js
+│   │   ├── user.controller.js
+│   │   ├── product.controller.js
+│   │   ├── order.controller.js
+│   │   └── recommendation.controller.js
+│   ├── models/             # Database schemas
+│   │   ├── user.model.js
+│   │   ├── product.model.js
+│   │   ├── order.model.js
+│   │   └── recommendation.model.js
+│   ├── routes/             # API routes
+│   │   ├── auth.routes.js
+│   │   ├── user.routes.js
+│   │   ├── product.routes.js
+│   │   ├── order.routes.js
+│   │   └── recommendation.routes.js
+│   ├── middleware/         # Custom middleware
+│   │   └── auth.middleware.js
+│   ├── config/            # Configuration files
+│   │   └── db.config.js
+│   └── app.js             # Express app setup
+├── data/                  # Seed data
+│   └── products.json
+├── seed.js               # Database seeding script
+├── server.js             # Server entry point
+├── package.json
+└── .env                  # Environment variables
+```
+
+## 🤖 Recommendation System
+
+The recommendation system uses multiple algorithms:
+
+1. **Trending Products**: For new users without purchase history
+2. **Category-based**: Recommends products from frequently purchased categories
+3. **Price-based**: Suggests products within user's typical price range
+4. **Complementary**: Recommends products from different categories
+5. **Collaborative Filtering**: Based on similar user behaviors
+
+### Recommendation Reasons
+- `frequently_bought` - Based on purchase frequency
+- `similar_category` - Same category as previous purchases
+- `price_range` - Within user's price preferences
+- `user_preference` - Based on user ratings/behavior
+- `trending` - Popular products
+- `seasonal` - Seasonal recommendations
+- `complementary` - Complementary products
+
+## 🔒 Security Features
+
+- Password hashing with bcryptjs
+- JWT token authentication
+- Protected routes with middleware
+- Input validation
+- CORS enabled
+- Request logging with Morgan
+
+## 🚀 Deployment
+
+1. **Environment Variables**: Set up production environment variables
+2. **Database**: Use MongoDB Atlas for production
+3. **Security**: Use strong JWT secrets and enable HTTPS
+4. **Monitoring**: Add logging and monitoring solutions
+
+## 📝 TODO
+
+- [ ] Add input validation middleware
+- [ ] Implement rate limiting
+- [ ] Add API documentation with Swagger
+- [ ] Add unit tests
+- [ ] Implement caching with Redis
+- [ ] Add email notifications
+- [ ] Implement admin middleware
+- [ ] Add file upload for product images
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## 📄 License
+
+This project is licensed under the ISC License.
+
+## 📞 Support
+
+For support, email support@bytxl.com or create an issue in the repository.
