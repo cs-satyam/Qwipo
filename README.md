@@ -292,6 +292,183 @@ The recommendation system uses multiple algorithms:
 - [ ] Implement admin middleware
 - [ ] Add file upload for product images
 
+🛒 Qwipo ML Engine – Intelligent Product Recommendation Platform
+
+Qwipo ML Engine is a next-generation AI-powered product recommendation system built to empower retailers with actionable product insights, personalized suggestions, and real-time market trend intelligence.
+The platform integrates machine learning, Google Gemini LLM, and e-commerce market APIs to help retailers optimize their inventory and stay ahead of consumer demand.
+
+📌 Table of Contents
+
+Overview
+
+Key Features
+
+Tech Stack
+
+Project Structure
+
+Installation & Setup
+
+Environment Variables
+
+Usage
+
+API Endpoints
+
+Future Enhancements
+
+Contributing
+
+License
+
+🌟 Overview
+
+Retailers often struggle with product discovery, missing out on trending items and profitable inventory opportunities.
+The Qwipo ML Engine solves this by:
+
+Analyzing transaction history and purchase behavior.
+
+Recommending products using a hybrid recommendation engine.
+
+Fetching trending e-commerce products (Amazon/Flipkart).
+
+Providing AI-generated explanations for every recommendation.
+
+This helps retailers stay ahead of competitors and grow their business with data-driven decision making.
+
+🚀 Key Features
+
+✅ Personalized Recommendations
+
+Generates product suggestions based on retailer transaction data and product attributes.
+
+✅ Hybrid Recommender System
+
+Combines Collaborative Filtering (CF) and Content-Based Filtering (CB) for maximum accuracy.
+
+✅ Market Trend Insights
+
+Integrates with Amazon/Flipkart APIs to fetch real-time trending products and growth opportunities.
+
+✅ AI-Powered Explanations
+
+Uses Google Gemini to explain why each product is recommended in human-readable business language.
+
+✅ Retailer Dashboard (Planned)
+
+Web-based dashboard to view recommendations, trending products, and actionable tips.
+
+💻 Tech Stack
+Layer	Technology	Purpose
+Backend	FastAPI	REST API for recommendation engine, Gemini integration, and trend scraping.
+Machine Learning	Hybrid Recommender (CF + CB)	Personalized product suggestions.
+LLM	Google Gemini API (google-generativeai)	Natural language explanations for recommendations.
+Database	CSV / Pandas DataFrames	Stores transactions and product catalog (for MVP).
+Frontend	React.js	Retailer-facing web interface to display recommendations and insights.
+Environment Management	Python-dotenv	Secure storage of API keys and configuration.
+Deployment	Uvicorn / ASGI	High-performance backend server.
+📂 Project Structure
+qwipo-ml-engine/
+│
+├─ backend/
+│  ├─ main.py                 # FastAPI entry point
+│  ├─ features.py             # Data loading & preprocessing
+│  ├─ cf_model.py             # Collaborative Filtering logic
+│  ├─ cb_model.py             # Content-Based logic
+│  ├─ hybrid.py               # Hybrid Recommender
+│  ├─ llm_utils.py            # Gemini integration
+│  └─ data/
+│     ├─ products.csv         # Product catalog
+│     └─ transactions.csv     # Sample transaction history
+│
+├─ frontend/
+│  ├─ src/
+│  │   ├─ App.js              # React main app
+│  │   ├─ components/         # UI components
+│  │   └─ services/api.js     # Axios API calls
+│
+├─ .env.example               # Sample environment variables
+├─ requirements.txt           # Python dependencies
+└─ README.md                  # Project documentation
+
+⚙ Installation & Setup
+1️⃣ Clone the Repository
+git clone https://github.com/your-username/qwipo-ml-engine.git
+cd qwipo-ml-engine
+
+2️⃣ Backend Setup
+cd backend
+python -m venv .venv
+source .venv/bin/activate      # (Linux/Mac)
+.venv\Scripts\activate         # (Windows)
+pip install -r requirements.txt
+
+3️⃣ Frontend Setup
+cd frontend
+npm install
+npm start
+
+🔑 Environment Variables
+
+Create a .env file inside backend/:
+
+GEMINI_API_KEY=your_google_gemini_api_key
+TREND_API_KEY=your_amazon_or_flipkart_api_key
+
+▶ Usage
+
+Run Backend
+
+cd backend
+uvicorn main:app --reload
+
+
+Backend will run at: http://localhost:8000
+
+Run Frontend
+
+cd frontend
+npm start
+
+
+Frontend will run at: http://localhost:3000
+
+🔌 API Endpoints
+Method	Endpoint	Description
+POST	/recommend	Get personalized product recommendations.
+GET	/trending (Planned)	Fetch trending e-commerce products from Amazon/Flipkart.
+GET	/health	Health check endpoint.
+🔮 Future Enhancements
+Feature	Technology
+Trending Product Integration	Amazon Product Advertising API / Flipkart Affiliate API
+Database Upgrade	PostgreSQL/MySQL for scalable data storage
+Real-time Recommendations	Kafka + TensorFlow Serving
+Advanced ML Models	Neural Collaborative Filtering (NCF), DeepFM
+Analytics Dashboard	React + Tailwind + Chart.js
+Smart Inventory Forecasting	Prophet / ARIMA
+🤝 Contributing
+
+Contributions are welcome!
+Please fork the repository and submit a pull request with detailed changes.
+
+📜 License
+
+This project is licensed under the MIT License – free to use and modify.
+
+🌟 Acknowledgements
+
+FastAPI
+ for a blazing-fast backend.
+
+Google Gemini API
+ for powerful natural language generation.
+
+Amazon Product Advertising API
+ & Flipkart Affiliate API
+ for trending product insights.
+
+
+
 ## 🤝 Contributing
 
 1. Fork the repository
