@@ -1,0 +1,28 @@
+/* CTA Section */
+.cta-section {
+  background-color: #001f3f;
+  color: #fff;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.cta-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+}
+
+.cta-btn {
+  font-weight: 600;
+  font-size: 1.2rem;
+  padding: 1rem 3rem;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(255, 193, 7, 0.4);
+}

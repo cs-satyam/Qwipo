@@ -1,0 +1,47 @@
+/* Contact Section */
+.contact-section {
+  background: linear-gradient(135deg, #eef2f7 0%, #ffffff 100%);
+}
+
+.contact-title {
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  color: #2c3e50;
+}
+
+.contact-subtitle {
+  font-size: 1.05rem;
+  color: #6c757d;
+}
+
+.contact-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 1.25rem;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+}
+
+.contact-aside {
+  background: linear-gradient(135deg, rgba(25, 135, 84, 0.08), rgba(25, 135, 84, 0.02));
+  border: 1px solid rgba(25, 135, 84, 0.15);
+  border-radius: 1.25rem;
+}
+
+.icon-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.form-control-lg {
+  border-radius: 0.9rem;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.15);
+  border-color: rgba(25, 135, 84, 0.6);
+}
